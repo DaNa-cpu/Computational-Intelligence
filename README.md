@@ -41,3 +41,77 @@ The notebook expects the dataset path to be:
 orl_path = "ORL"
 
 
+## Methodology
+
+### Preprocessing
+- Convert images to grayscale
+- Resize to 46 × 56 pixels
+- Flatten images into 2576-dimensional vectors
+- Standardize features (zero mean, unit variance)
+
+### Dimensionality Reduction
+- PCA trained on standardized training data
+- Number of components selected based on cumulative explained variance (83%–99.5%)
+- Empirical analysis identifies **m = 78** components as an effective operating point
+
+### Classifiers
+| Model | Description |
+|------|------------|
+| Nearest Neighbor (1-NN) | Classification by minimum Euclidean distance |
+| 3-Nearest Neighbors (3-NN) | Majority vote over three nearest samples |
+| Nearest Centroid | Classification based on class prototypes |
+
+---
+
+## Experimental Setup
+- Multiple train/test splits (50/50 to 90/10)
+- PCA fitted exclusively on training data
+- Classification performed in the PCA-reduced space
+- Evaluation on held-out test data
+
+---
+
+## Results
+
+### Optimal Configuration
+- PCA components: **m = 78**
+- Train/Test split: **50% / 50%**
+
+### Performance Metrics (Macro-Averaged)
+
+| Metric | 1-NN | 3-NN | Nearest Prototype |
+|------|------|------|------------------|
+| Accuracy | 0.94 | 0.84 | 0.92 |
+| Precision | 0.95 | 0.89 | 0.93 |
+| Recall | 0.93 | 0.84 | 0.92 |
+| F1-score | 0.94 | 0.84 | 0.91 |
+
+Nearest Neighbor achieves the highest accuracy, while Nearest Centroid offers competitive performance with reduced model complexity.
+
+---
+
+## Visual Analysis
+The notebook generates:
+- Explained variance versus number of PCA components
+- Accuracy as a function of PCA dimensionality
+- Two-dimensional PCA embeddings
+- Eigenfaces visualization
+- Confusion matrices for all classifiers
+
+---
+
+## Tech Stack
+- Python 3
+- NumPy
+- Pandas
+- scikit-learn
+- Matplotlib
+- Seaborn
+- PIL
+- Jupyter Notebook
+
+---
+
+## How to Run
+```bash
+pip install numpy pandas matplotlib seaborn scikit-learn pillow
