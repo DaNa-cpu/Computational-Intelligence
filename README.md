@@ -27,20 +27,11 @@ To avoid repository bloat, the dataset is included as a compressed archive.
 ### Setup Instructions
 ```bash
 unzip orl.zip
-After extraction, the repository structure must be:
-Computational-Intelligence/
-│── Project.ipynb
-│── orl.zip
-│── ORL/
-│   ├── s1/
-│   ├── s2/
-│   └── ...
-│── README.md
-
+```
 The notebook expects the dataset path to be:
 orl_path = "ORL"
 
-
+---
 ## Methodology
 
 ### Preprocessing
@@ -115,3 +106,4 @@ The notebook generates:
 ## How to Run
 ```bash
 pip install numpy pandas matplotlib seaborn scikit-learn pillow
+```
